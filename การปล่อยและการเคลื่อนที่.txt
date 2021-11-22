@@ -1,0 +1,29 @@
+				float move_ = d * 0.24; //d คือ delta time ที่แต่ละเครื่องจะมีไม่เหมือนกัน move_ [ หน่วย pixel ] คืออัตราการเคลื่อนที่ pixel/deltatime 
+				for (int i = 0; i < vec.size(); i++)
+				{
+					if (vec[i].first.first <= time + ((629 / move_) * d) && vec[i].first.first >= time - 300) //set เวลาในการปล่อยให้น้อยกว่าเวลาที่ควรจะเป็น ((ระยะทางจากจุดเริ่มต้นถึง center(pixel) / move_) * d)
+					{
+						if (vec[i].second == 0 && vec[i].first.second.getPosition().x <= 533)
+						{
+							window.draw(vec[i].first.second);
+							vec[i].first.second.move(move_, 0.0f);
+
+						}
+						else if (vec[i].second == 1 && vec[i].first.second.getPosition().x >= 513)
+						{
+							window.draw(vec[i].first.second);
+							vec[i].first.second.move(-move_, 0.0f);
+						}
+						else if (vec[i].second == 2 && vec[i].first.second.getPosition().y <= 317)
+						{
+							window.draw(vec[i].first.second);
+							vec[i].first.second.move(0.f, move_);
+						}
+						else if (vec[i].second == 3 && vec[i].first.second.getPosition().y >= 297)
+						{
+							window.draw(vec[i].first.second);
+							vec[i].first.second.move(0.f, -move_);
+						}
+						if (vec[i].first.first > time + 4000) break;
+					}
+				}

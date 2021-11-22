@@ -1,0 +1,48 @@
+	//ใช้การอ่านไฟล์
+	FILE* fp;
+	char time1[1000];
+	fp = fopen("song0.txt", "r+t"); /*เปิดไฟล์ที่เราtackเพลงไว้*/
+
+	int n = 0;
+
+	while (!feof(fp))
+	{
+		int num = 0;
+		fgets(time1, 100, fp);
+		for (int i = 0; i < strlen(time1) - 1; i++) //ที่ต้อง -1 เพราะตัวสุดท้ายที่อ่านมาจากไฟล์ txt คือ "\n"
+		{
+			num = (num * 10) + time1[i] - 48;
+		} //อ่านค่าchar  แต่ละบรรทัด แล้วแปลงเป็นตัวเลข
+		int w = (d * (629 / 6));
+		/* เอาเวลาที่เป็นจำนวนเต็มแล้ว (int num) ยัดลง VECTOR */
+
+		/*ในที่นี้ข้อมูลที่พี่ยัดลงvector มี3ข้อมูลคือ
+			1.เวลาที่ใช้ปล่อย ITEM [ num ]
+			2.รูปภาพของITEM [ sprite[0] ]
+			3.ทิศทางของ ITEM
+		พี่ใช้ piar เป็นตัวช่วยทำให้เก็บได้มากกว่า 1 ตัวแปรแต่แนะนำให้ใช้เป็น struct จะสะดวกกว่า*/
+
+		if (n % (numlevel + 2) == 0)
+		{
+			vec.push_back(make_pair(make_pair(num, sprite[0]), 0));
+		}
+
+		if (n % (numlevel + 2) == 1)
+		{
+			vec.push_back(make_pair(make_pair(num, sprite[1]), 1));
+		}
+
+		if (n % (numlevel + 2) == 2)
+		{
+			vec.push_back(make_pair(make_pair(num, sprite[2]), 2));
+		}
+
+		if (n % (numlevel + 2) == 3)
+		{
+			vec.push_back(make_pair(make_pair(num, sprite[3]), 3));
+		}
+		n++;
+	}
+	fclose(fp);
+
+	if (!vec.empty()) vec.pop_back(), cen.pop_back();
